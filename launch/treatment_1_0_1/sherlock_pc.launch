@@ -1,0 +1,20 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="known_map" default="false"/>  
+  <arg name="open_obj_recognition_gui" default="false"/>
+
+  <!-- gmapping -->
+  <group unless="$(arg known_map)"> 
+    <include file="$(find sherlock_slam)/launch/sherlock_slam.launch"/>
+  </group>
+
+  <group if="$(arg known_map)"> 
+    <!-- AMCL -->
+    <include file="$(find sherlock_navigation)/launch/sherlock_localisation.launch" />
+  </group>
+  
+  <!-- find_object_2d -->
+  <include file="$(find sherlock_obj_recognition)/launch/sherlock_pringles_recognition.launch">
+    <arg name="gui" value="$(arg open_obj_recognition_gui)" />
+  </include>	
+</launch>

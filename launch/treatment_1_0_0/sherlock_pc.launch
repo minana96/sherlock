@@ -1,0 +1,15 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="known_map" default="false"/>  
+
+  <!-- gmapping -->
+  <group unless="$(arg known_map)"> 
+    <include file="$(find sherlock_slam)/launch/sherlock_slam.launch"/>
+  </group>
+
+  <group if="$(arg known_map)"> 
+    <!-- AMCL -->
+    <include file="$(find sherlock_navigation)/launch/sherlock_localisation.launch" />
+  </group>
+  
+</launch>

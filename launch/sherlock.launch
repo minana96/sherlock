@@ -1,0 +1,51 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="known_map" default="false"/>
+  <arg name="map_file" default="$(find sherlock_slam)/maps/tb3_pictures_hexagon_map.yaml"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="move_forward_only" default="false"/>
+
+  <!-- Turtlebot3 -->
+  <include file="$(find sherlock)/launch/sherlock_bringup.launch"/>
+
+  <group unless="$(arg known_map)"> 
+    <!-- SLAM -->
+    <include file="$(find sherlock)/launch/sherlock_slam.launch">
+      <arg name="model" value="burger" />
+      <arg name="slam_methods" value="gmapping" />
+    </include>
+  </group>
+
+  <group if="$(arg known_map)"> 
+    <!-- Map server -->
+    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" />
+    <!-- AMCL -->
+    <include file="$(find turtlebot3_navigation)/launch/amcl.launch" />
+  </group>
+
+  <!-- move_base -->
+  <include file="$(find sherlock)/launch/sherlock_nav.launch">
+    <arg name="model" value="burger" />
+    <arg name="move_forward_only" value="$(arg move_forward_only)" />
+  </include>
+
+  <!-- Sherlock controller -->
+  <node pkg="sherlock" type="sherlock_controller.py" name="sherlock_controller" output="screen">
+    <rosparam file="$(find sherlock)/param/desired_path.yaml" command="load" />
+  </node>
+
+  <!-- find_package_2d -->
+  <include file="$(find sherlock)/launch/sherlock_obj_recognition.launch"/>
+  
+  <!-- sherlock_obj_recognition -->
+  <node pkg="sherlock" type="sherlock_obj_recognition_results.py" name="sherlock_obj_recognition" output="screen">
+	  <rosparam file="$(find sherlock)/param/objects_for_recognition.yaml" command="load" />
+  </node>	
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find turtlebot3_navigation)/rviz/turtlebot3_navigation.rviz" />
+  </group>
+
+</launch>
