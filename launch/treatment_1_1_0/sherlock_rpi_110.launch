@@ -20,7 +20,7 @@
 
   <!-- sherlock_obj_recognition_results -->
   <node pkg="sherlock" type="sherlock_obj_recognition_results.py" name="sherlock_obj_recognition" output="screen">
-	  <rosparam file="$(find sherlock)/param/objects_for_recognition.yaml" command="load" />
+	  <rosparam file="$(find sherlock)/config/objects_for_recognition.yaml" command="load" />
   </node>
   
   <group if="$(arg known_map)"> 
