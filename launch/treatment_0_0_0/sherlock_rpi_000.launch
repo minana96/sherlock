@@ -12,7 +12,7 @@
   <include file="$(find sherlock_bringup)/launch/sherlock_state_publisher.launch"/>
 
   <!-- raspicam_node -->
-  <include file="$(find raspicam_node)/launch/camerav2_1280x960.launch"/>
+  <include file="$(find raspicam_node)/launch/camerav2_1280x960_10fps.launch"/>
 
   <!-- sherlock_controller -->
   <node pkg="sherlock" type="sherlock_controller.py" name="sherlock_controller" output="screen">
