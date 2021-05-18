@@ -27,7 +27,7 @@ class SherlockController:
 
         goal = self.create_goal(x_goal, y_goal, yaw)
 
-        rospy.loginfo(f"Sending goal location: x={x_goal}, y={y_goal}, yaw={yaw}")
+        rospy.loginfo("Sending goal location: x={}, y={}, yaw={}".format(x_goal, y_goal, yaw))
         self.ac.send_goal(goal)
 
         # Wait for the result
