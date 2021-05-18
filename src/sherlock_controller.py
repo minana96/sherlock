@@ -16,7 +16,7 @@ class SherlockController:
         self.reference_frame = rospy.get_param('~reference_frame', 'map')
         self.time_to_wait = rospy.get_param('~time_to_wait', 1)
         self.goal_poses = rospy.get_param('~goal_poses', [])
-        rospy.loginfo(self.goal_poses)
+
 
     # Make the robot move to the goal pose
     def move_to_goal(self, x_goal, y_goal, yaw):
@@ -59,7 +59,7 @@ class SherlockController:
 
 
     def spin(self):
-        rospy.loginfo('Loop started...')
+        rospy.loginfo('Sherlock controller started...')
 
         for goal_pose in self.goal_poses:
             x_goal = goal_pose[0]
