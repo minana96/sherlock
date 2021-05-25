@@ -14,7 +14,7 @@
   <node pkg="find_object_2d" type="find_object_2d" name="find_object_2d" machine="remote_pc">
     <remap from="image" to="raspicam_node/image"/>
     <param name="gui" value="false"/>
-	<param name="objects_path" value="$(find sherlock_obj_recognition)/pringles"/>
+    <param name="objects_path" value="$(find sherlock_obj_recognition)/pringles"/>
     <param name="settings_path" value="$(find sherlock_obj_recognition)/config/find_object_2d.ini"/>
     <param name="image_transport" value="compressed"/>
   </node>
