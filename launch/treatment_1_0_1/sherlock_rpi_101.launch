@@ -1,7 +1,7 @@
 <launch>
   <!-- Arguments -->
   <arg name="known_map" default="false"/>
-  <arg name="map_file" default="$(find sherlock_slam)/maps/serki_room.yaml"/>
+  <arg name="map_file" default="$(find sherlock_slam)/maps/robot_arena.yaml"/>
   <arg name="open_rviz" default="false"/>
 
   <!-- turtlebot3_robot -->
