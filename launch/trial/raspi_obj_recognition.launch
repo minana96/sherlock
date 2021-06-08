@@ -17,4 +17,7 @@
   <!-- sherlock_obj_recognition_results -->
   <node pkg="find_object_2d" type="print_objects_detected" name="print_objects_detected" output="screen"/>
 
+  <!-- plain node -->
+  <node pkg="sherlock" type="plain_node.py" name="plain_node" output="screen" required="true"/>
+
 </launch>
