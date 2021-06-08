@@ -1,7 +1,7 @@
 <launch>
   <!-- Arguments -->
   <arg name="known_map" default="false"/>
-  <arg name="map_file" default="$(find sherlock_slam)/maps/robot_arena.yaml"/>
+  <arg name="map_file" default="$(find sherlock_slam)/maps/robot_arena_2.yaml"/>
 
   <!-- turtlebot3_robot -->
   <include file="$(find sherlock_bringup)/launch/sherlock_bringup.launch"/>
