@@ -1,6 +1,5 @@
 <launch>
   <!-- Arguments -->
-  <arg name="path_to_remote_ws" default="/home/milica/catkin_ws"/>
   <arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro'"/>
   <arg name="publish_frequency" default="50.0"/>
   <arg name="offload_slam" default="false"/>
@@ -43,7 +42,6 @@
   <group if="$(arg offload_slam)"> 
     <include file="$(find sherlock_slam)/launch/sherlock_slam_remote.launch">
       <arg name="remote_machine_name" value="remote_pc"/>
-      <arg name="path_to_remote_ws" value="$(arg path_to_remote_ws)"/>
     </include>
   </group>
 
@@ -56,7 +54,6 @@
   <group if="$(arg offload_navigation)"> 
     <include file="$(find sherlock_navigation)/launch/sherlock_navigation_remote.launch">
       <arg name="remote_machine_name" value="remote_pc"/>
-      <arg name="path_to_remote_ws" value="$(arg path_to_remote_ws)"/>
     </include>
   </group>
 
