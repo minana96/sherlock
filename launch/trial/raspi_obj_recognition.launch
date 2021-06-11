@@ -6,7 +6,7 @@
   <include file="$(find raspicam_node)/launch/camerav2_1280x960.launch"/>
   
   <!-- find_object_2d -->
-  <node pkg="find_object_2d" type="find_object_2d" name="find_object_2d" machine="remote_pc">
+  <node pkg="find_object_2d" type="find_object_2d" name="find_object_2d"> <!--machine="remote_pc"-->
     <remap from="image" to="raspicam_node/image"/>
     <param name="gui" value="false"/>
     <param name="objects_path" value="/home/milica/catkin_ws/src/sherlock/launch/trial/object"/>
