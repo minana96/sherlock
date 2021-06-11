@@ -15,7 +15,7 @@
   </node>
 
   <!-- sherlock_obj_recognition_results -->
-  <node pkg="sherlock" type="obj_recognition_results" name="sherlock_obj_recognition_results.py" output="screen"/>
+  <node pkg="sherlock" type="sherlock_obj_recognition_results.py" name="obj_recognition_results" output="screen"/>
 
   <!-- plain node -->
   <node pkg="sherlock" type="plain_node.py" name="plain_node" output="screen" required="true"/>
