@@ -21,7 +21,7 @@ class SherlockObjRecognition:
             rospy.loginfo("No object recognised")
         else:
             object_output = ", ".join([("Object " + str(int(obj_id))) for obj_id in self.currently_recognised])
-            rospy.loginfo(str(current_time) + " " + object_output + " detected!")
+            rospy.loginfo("(" + str(current_time) + ") " + object_output + " detected!")
 
 
 if __name__ == '__main__':
