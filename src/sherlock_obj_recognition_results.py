@@ -11,7 +11,7 @@ class SherlockObjRecognition:
 
     def callback_objects(self, msg):
         current_time = datetime.now()
-        time_as_string = current_time.strftime('(%Y-%m-%d %H:%M:%S,%f)'[:-3])
+        time_as_string = current_time.strftime('%H:%M:%S.%f')[:-3]
         recognised_objects = msg.data
         
         self.currently_recognised = set(recognised_objects[::12]) 
@@ -22,7 +22,7 @@ class SherlockObjRecognition:
             rospy.loginfo(current_time + ": " + "No object recognised")
         else:
             object_output = ", ".join([("Object " + str(int(obj_id))) for obj_id in self.currently_recognised])
-            rospy.loginfo(current_time + ": " + object_output + " detected!")
+            rospy.loginfo("(" + current_time + ") " + object_output + " detected!")
 
 
 if __name__ == '__main__':
