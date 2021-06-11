@@ -8,5 +8,5 @@ if __name__ == '__main__':
 
     # Initial delay
     rospy.loginfo('Plain node started')
-    rospy.sleep(10)
+    rospy.sleep(5)
     rospy.loginfo('Plain node ended')
