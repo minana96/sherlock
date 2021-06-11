@@ -1,7 +1,7 @@
 #!/usr/bin/env python  
 
 import rospy
-from std_msgs.msg import Float32MultiArray
+from std_msgs.msg import Float32MultiArray, MultiArrayLayout
 
 class SherlockObjRecognition:
 
@@ -18,7 +18,7 @@ class SherlockObjRecognition:
         if len(self.currently_recognised) == 0:
             rospy.loginfo("No object recognised")
         else:
-            object_output = ", ".join([f"Object {int(obj_id)}" for obj_id in self.currently_recognised])
+            object_output = ", ".join([("Object " + str(int(obj_id))) for obj_id in self.currently_recognised])
             rospy.loginfo(object_output + " detected!")
 
 
