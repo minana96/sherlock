@@ -27,5 +27,8 @@ class SherlockObjRecognition:
 
 if __name__ == '__main__':
     rospy.init_node('sherlock_obj_recognition_output')
-    SherlockObjRecognition()
-    rospy.spin()
+    try:
+        SherlockObjRecognition()
+        rospy.spin()
+    except rospy.ROSInterruptException:
+        pass
