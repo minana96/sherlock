@@ -2,9 +2,6 @@
   <!-- remote PC -->
   <machine name="remote_pc" address="192.168.1.9" env-loader="/opt/ros/melodic/env.sh" user="milica" default="never"/>
 
-  <!-- raspicam_node -->
-  <include file="$(find raspicam_node)/launch/camerav2_1280x960.launch"/>
-  
   <!-- find_object_2d -->
   <node pkg="find_object_2d" type="find_object_2d" name="find_object_2d" machine="remote_pc">
     <remap from="image" to="raspicam_node/image"/>
