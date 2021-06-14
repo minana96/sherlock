@@ -19,7 +19,7 @@ class SherlockObjRecognition:
     
     def print_object_ids(self, current_time):
         if len(self.currently_recognised) == 0:
-            rospy.loginfo(current_time + " No object recognised")
+            rospy.loginfo(current_time + " No object detected")
         else:
             object_output = ", ".join([("Object " + str(int(obj_id))) for obj_id in self.currently_recognised])
             rospy.loginfo(current_time + " " + object_output + " detected!")
