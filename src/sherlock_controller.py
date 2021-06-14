@@ -74,11 +74,9 @@ class SherlockController:
 
 if __name__ == '__main__':
     rospy.init_node('sherlock_controller')
-    sc = SherlockController()
 
-    # Initial delay
-    rospy.sleep(10)
     try:
+        sc = SherlockController()
         sc.spin()
     except rospy.ROSInterruptException:
         pass
