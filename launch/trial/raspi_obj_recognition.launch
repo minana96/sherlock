@@ -3,11 +3,11 @@
   <machine name="remote_pc" address="192.168.1.9" env-loader="/opt/ros/melodic/env.sh" user="milica" default="never"/>
 
   <!-- find_object_2d -->
-  <node pkg="find_object_2d" type="find_object_2d" name="find_object_2d" machine="remote_pc">
+  <node pkg="find_object_2d" type="find_object_2d" name="find_object_2d">
     <remap from="image" to="raspicam_node/image"/>
     <param name="gui" value="false"/>
-    <param name="objects_path" value="/home/milica/catkin_ws/src/sherlock/launch/trial/object"/>
-    <param name="settings_path" value="/home/milica/catkin_ws/src/sherlock/launch/trial/config/find_object_2d.ini"/>
+    <param name="objects_path" value="/home/ubuntu/catkin_ws/src/sherlock/launch/trial/object"/>
+    <param name="settings_path" value="/home/ubuntu/catkin_ws/src/sherlock/launch/trial/config/find_object_2d.ini"/>
     <param name="image_transport" value="compressed"/>
   </node>
 
