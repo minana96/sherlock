@@ -29,10 +29,7 @@
   </node>
 
   <!-- sherlock_obj_recognition_results -->
-  <node pkg="sherlock" type="sherlock_obj_recognition_results.py" name="sherlock_obj_recognition" output="screen">
-    <rosparam file="$(find sherlock)/config/objects_for_recognition.yaml" command="load" />
-  </node>
-
+  <node pkg="sherlock" type="sherlock_obj_recognition_results.py" name="sherlock_obj_recognition" output="screen"/>
 
   <!-- gmapping -->
   <group unless="$(arg offload_slam)"> 
@@ -60,11 +57,11 @@
 
   <!-- find_object_2d -->
   <group unless="$(arg offload_obj_recognition)"> 
-    <include file="$(find sherlock_obj_recognition)/launch/sherlock_pringles_recognition.launch"/>
+    <include file="$(find sherlock_obj_recognition)/launch/sherlock_object_recognition.launch"/>
   </group>
 
   <group if="$(arg offload_obj_recognition)"> 
-    <include file="$(find sherlock_obj_recognition)/launch/sherlock_pringles_recognition_remote.launch">
+    <include file="$(find sherlock_obj_recognition)/launch/sherlock_object_recognition_remote.launch">
       <arg name="remote_machine_name" value="remote_pc"/>
     </include>
   </group>

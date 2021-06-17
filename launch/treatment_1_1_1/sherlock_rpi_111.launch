@@ -2,12 +2,18 @@
   <!-- Arguments -->
   <arg name="known_map" default="false"/>
   <arg name="map_file" default="$(find sherlock_slam)/maps/robot_arena_2.yaml"/>
+  <arg name="publish_frequency" default="50.0"/>
+
+  <!-- urdf file of turtlebot3 -->
+  <param name="robot_description" command="$(arg urdf_file)" />
 
   <!-- turtlebot3_robot -->
-  <include file="$(find sherlock_bringup)/launch/sherlock_bringup.launch"/>
+  <include file="$(find turtlebot3_bringup)/launch/turtlebot3_robot.launch"/>
 
   <!-- robot_state_publisher -->
-  <include file="$(find sherlock_bringup)/launch/sherlock_state_publisher.launch"/>
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" value="$(arg publish_frequency)" />
+  </node>
 
   <!-- raspicam_node -->
   <include file="$(find raspicam_node)/launch/camerav2_1280x960_10fps.launch"/>
@@ -18,9 +24,7 @@
   </node>
 
   <!-- sherlock_obj_recognition_results -->
-  <node pkg="sherlock" type="sherlock_obj_recognition_results.py" name="sherlock_obj_recognition" output="screen">
-	  <rosparam file="$(find sherlock)/config/objects_for_recognition.yaml" command="load" />
-  </node>
+  <node pkg="sherlock" type="sherlock_obj_recognition_results.py" name="sherlock_obj_recognition" output="screen"/>
   
   <group if="$(arg known_map)"> 
     <!-- map_server -->

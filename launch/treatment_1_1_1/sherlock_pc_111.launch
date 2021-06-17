@@ -20,7 +20,7 @@
   </include>
 
   <!-- find_object_2d -->
-  <include file="$(find sherlock_obj_recognition)/launch/sherlock_pringles_recognition.launch">
+  <include file="$(find sherlock_obj_recognition)/launch/sherlock_object_recognition.launch">
     <arg name="gui" value="$(arg open_obj_recognition_gui)" />
   </include>	
   
