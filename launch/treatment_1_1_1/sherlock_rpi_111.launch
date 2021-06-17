@@ -1,5 +1,6 @@
 <launch>
   <!-- Arguments -->
+  <arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro'"/>
   <arg name="known_map" default="false"/>
   <arg name="map_file" default="$(find sherlock_slam)/maps/robot_arena_2.yaml"/>
   <arg name="publish_frequency" default="50.0"/>
