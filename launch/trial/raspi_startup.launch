@@ -1,0 +1,12 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="frequency" default="10.0"/>
+
+  <!-- turtlebot3_robot -->
+  <include file="$(find turtlebot3_bringup)/launch/turtlebot3_robot.launch"/>
+
+  <!-- resource_profiler -->
+  <node pkg="resource_profiler" type="resource_profiler_server.py" name="resource_profiler">
+    <param name="frequency" value="$(arg frequency)" />
+  </node>
+</launch>
