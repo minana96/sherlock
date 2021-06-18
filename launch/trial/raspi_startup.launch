@@ -6,7 +6,7 @@
   <include file="$(find raspicam_node)/launch/camerav2_1280x960.launch"/>
 
   <!-- resource_profiler -->
-  <node pkg="resource_profiler" type="resource_profiler_server.py" name="resource_profiler">
+  <node pkg="resource_profiler" type="resource_profiler_server.py" name="resource_profiler" output="screen">
     <param name="frequency" value="$(arg frequency)" />
   </node>
 </launch>
