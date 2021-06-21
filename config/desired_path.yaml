@@ -1,5 +1,5 @@
 reference_frame: map
-time_to_wait: 3
+time_to_wait: 1
 goal_poses: [
   [0.4, -0.6928, -60], 
   [0, 0, 180], 
