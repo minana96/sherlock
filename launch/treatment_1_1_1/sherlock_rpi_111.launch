@@ -1,20 +1,16 @@
 <launch>
   <!-- Arguments -->
-  <arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro'"/>
   <arg name="known_map" default="false"/>
   <arg name="map_file" default="$(find sherlock_slam)/maps/robot_arena_2.yaml"/>
   <arg name="publish_frequency" default="50.0"/>
 
-  <!-- urdf file of turtlebot3 -->
-  <param name="robot_description" command="$(arg urdf_file)" />
-
   <!-- turtlebot3_robot -->
-  <include file="$(find turtlebot3_bringup)/launch/turtlebot3_robot.launch"/>
+  <include file="$(find sherlock_bringup)/launch/sherlock_bringup.launch"/>
 
   <!-- robot_state_publisher -->
-  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+  <include file="$(find sherlock_bringup)/launch/sherlock_state_publisher.launch"/>
     <param name="publish_frequency" value="$(arg publish_frequency)" />
-  </node>
+  </include>
 
   <!-- raspicam_node -->
   <include file="$(find raspicam_node)/launch/camerav2_1280x960_10fps.launch"/>
