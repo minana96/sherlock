@@ -9,16 +9,10 @@
   <!-- remote PC -->
   <machine name="remote_pc" address="192.168.1.9" env-loader="/opt/ros/melodic/env.sh" user="milica" default="never"/>
   
-  <!-- turtlebot3_robot -->
-  <include file="$(find sherlock_bringup)/launch/sherlock_bringup.launch"/>
-
   <!-- robot_state_publisher -->
   <include file="$(find sherlock_bringup)/launch/sherlock_state_publisher.launch">
     <param name="publish_frequency" value="$(arg publish_frequency)" />
   </include>
-
-  <!-- raspicam_node -->
-  <include file="$(find raspicam_node)/launch/camerav2_1280x960_10fps.launch"/>
 
   <!-- sherlock_controller -->
   <node pkg="sherlock" type="sherlock_controller.py" name="sherlock_controller" output="screen" required="true">
@@ -31,7 +25,6 @@
   <!-- map_server -->
   <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" />
 
-
   <!-- AMCL -->
   <group unless="$(arg offload_amcl)"> 
     <include file="$(find sherlock_navigation)/launch/sherlock_localisation.launch"/>
@@ -42,7 +35,7 @@
       <arg name="remote_machine_name" value="remote_pc"/>
     </include>
   </group>
-
+  
 
   <!-- move_base -->
   <group unless="$(arg offload_navigation)"> 
