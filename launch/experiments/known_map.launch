@@ -11,7 +11,7 @@
   
   <!-- robot_state_publisher -->
   <include file="$(find sherlock_bringup)/launch/sherlock_state_publisher.launch">
-    <param name="publish_frequency" value="$(arg publish_frequency)" />
+    <arg name="publish_frequency" value="$(arg publish_frequency)" />
   </include>
 
   <!-- sherlock_controller -->
