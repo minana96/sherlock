@@ -12,7 +12,7 @@
   <include file="$(find sherlock_bringup)/launch/sherlock_bringup.launch"/>
 
   <!-- robot_state_publisher -->
-  <include file="$(find sherlock_bringup)/launch/sherlock_state_publisher.launch"/>
+  <include file="$(find sherlock_bringup)/launch/sherlock_state_publisher.launch">
     <param name="publish_frequency" value="$(arg publish_frequency)" />
   </include>
 
