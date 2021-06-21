@@ -54,7 +54,6 @@ class SherlockController:
         # Set orientation
         q = quaternion_from_euler(0, 0, radians(yaw))
         goal.target_pose.pose.orientation = Quaternion(*q)
-        print(goal.target_pose.pose.orientation)
 
         return goal
 
