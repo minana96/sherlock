@@ -8,6 +8,7 @@ class SherlockObjRecognition:
 
     def __init__(self):
         self.objects_subscriber = rospy.Subscriber("/objects", Float32MultiArray, self.callback_objects)
+        rospy.loginfo("Sherlock obj recognition results ready...")
 
     def callback_objects(self, msg):
         current_time = datetime.now()
