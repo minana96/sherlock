@@ -2,7 +2,6 @@
 
 import rospy
 from std_msgs.msg import Float32MultiArray, MultiArrayLayout
-from datetime import datetime
 
 class SherlockObjRecognition:
 
@@ -11,19 +10,17 @@ class SherlockObjRecognition:
         rospy.loginfo("Sherlock obj recognition results ready...")
 
     def callback_objects(self, msg):
-        current_time = datetime.now()
-        time_as_string = "(" + current_time.strftime("%H:%M:%S.%f")[:-3] + ")"
         recognised_objects = msg.data
         
         self.currently_recognised = set(recognised_objects[::12]) 
-        self.print_object_ids(time_as_string)
+        self.print_object_ids()
     
-    def print_object_ids(self, current_time):
+    def print_object_ids(self):
         if len(self.currently_recognised) == 0:
-            rospy.loginfo(current_time + " No object detected")
+            rospy.loginfo("No object detected")
         else:
             object_output = ", ".join([("Object " + str(int(obj_id))) for obj_id in self.currently_recognised])
-            rospy.loginfo(current_time + " " + object_output + " detected!")
+            rospy.loginfo(object_output + " detected!")
 
 
 if __name__ == '__main__':
