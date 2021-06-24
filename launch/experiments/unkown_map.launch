@@ -18,9 +18,6 @@
     <rosparam file="$(find sherlock)/config/desired_path.yaml" command="load" />
   </node>
 
-  <!-- sherlock_obj_recognition_results -->
-  <node pkg="sherlock" type="sherlock_obj_recognition_results.py" name="sherlock_obj_recognition" output="screen"/>
-
   <!-- gmapping -->
   <group unless="$(arg offload_slam)"> 
     <include file="$(find sherlock_slam)/launch/sherlock_slam.launch"/>

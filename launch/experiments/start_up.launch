@@ -15,4 +15,7 @@
 
   <!-- ina219_profiler-->
   <node pkg="ros_melodic_profilers" type="ina219_profiler_server.py" name="ina219_profiler" output="screen"/>
+
+  <!-- sherlock_obj_recognition_results -->
+  <node pkg="sherlock" type="sherlock_obj_recognition_results.py" name="sherlock_obj_recognition" output="screen"/>
 </launch>
