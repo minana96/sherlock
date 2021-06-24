@@ -1,6 +1,6 @@
 <launch>
   <!-- Arguments -->
-  <arg name="map_file" default="$(find sherlock_slam)/maps/robot_arena.yaml"/>
+  <arg name="map_file" default="$(find sherlock_slam)/maps/serki_cribs.yaml"/>
   <arg name="publish_frequency" default="50.0"/>
   <arg name="offload_amcl" default="false"/>
   <arg name="offload_navigation" default="false"/>
@@ -19,9 +19,6 @@
     <rosparam file="$(find sherlock)/config/desired_path.yaml" command="load" />
   </node>
 
-  <!-- sherlock_obj_recognition_results -->
-  <node pkg="sherlock" type="sherlock_obj_recognition_results.py" name="sherlock_obj_recognition" output="screen"/>
- 
   <!-- map_server -->
   <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" />
 
