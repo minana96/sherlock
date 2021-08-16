@@ -1,0 +1,16 @@
+<launch>
+  <!-- turtlebot3_robot -->
+  <include file="$(find sherlock_bringup)/launch/sherlock_bringup.launch"/>
+
+  <!-- raspicam_node -->
+  <include file="$(find raspicam_node)/launch/camerav2_640x480_20fps.launch"/>
+
+  <!-- robot_state_publisher -->
+  <include file="$(find sherlock_bringup)/launch/sherlock_state_publisher.launch"/>
+
+  <!-- profilers -->
+  <include file="$(find ros_melodic_profilers)/launch/profilers.launch"/>
+
+  <!-- sherlock_obj_recognition_results -->
+  <node pkg="sherlock" type="sherlock_obj_recognition_results.py" name="sherlock_obj_recognition" output="screen"/>
+</launch>

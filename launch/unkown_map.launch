@@ -1,0 +1,50 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="offload_slam" default="false"/>
+  <arg name="offload_navigation" default="false"/>
+  <arg name="offload_obj_recognition" default="false"/>
+
+  <!-- remote PC -->
+  <machine name="remote_pc" address="192.168.1.9" env-loader="/opt/ros/melodic/env.sh" user="milica" default="never"/>
+
+  <!-- sherlock_controller -->
+  <node pkg="sherlock" type="sherlock_controller.py" name="sherlock_controller" output="screen" required="true">
+    <rosparam file="$(find sherlock)/config/desired_path.yaml" command="load" />
+  </node>
+
+  <!-- gmapping -->
+  <group unless="$(arg offload_slam)"> 
+    <include file="$(find sherlock_slam)/launch/sherlock_slam.launch"/>
+  </group>
+
+  <group if="$(arg offload_slam)"> 
+    <include file="$(find sherlock_slam)/launch/sherlock_slam_remote.launch">
+      <arg name="remote_machine_name" value="remote_pc"/>
+    </include>
+  </group>
+
+
+  <!-- move_base -->
+  <group unless="$(arg offload_navigation)"> 
+    <include file="$(find sherlock_navigation)/launch/sherlock_navigation.launch"/>
+  </group>
+
+  <group if="$(arg offload_navigation)"> 
+    <include file="$(find sherlock_navigation)/launch/sherlock_navigation_remote.launch">
+      <arg name="remote_machine_name" value="remote_pc"/>
+    </include>
+  </group>
+
+
+  <!-- find_object_2d -->
+  <group unless="$(arg offload_obj_recognition)"> 
+    <include file="$(find sherlock_obj_recognition)/launch/sherlock_object_recognition.launch"/>
+  </group>
+
+  <group if="$(arg offload_obj_recognition)"> 
+    <include file="$(find sherlock_obj_recognition)/launch/sherlock_object_recognition_remote.launch">
+      <arg name="remote_machine_name" value="remote_pc"/>
+    </include>
+  </group>
+  
+</launch>
