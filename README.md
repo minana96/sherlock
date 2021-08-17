@@ -49,7 +49,7 @@ There are three launch files that can be launched in *start_run* Robot Runner ev
 
 There are eight launch files that can be launched in *launch_mission* Robot Runner event for each of the eight respective experiments:
 - **unkown_map.launch**: launches and SLAM, navigation and object recognition, either locally or remotely (passed as launch file parameters) as part of the *Unknown map* experiment setup;
-- **kown_map.launch**: launches and localisation, navigation and object recognition, either locally or remotely (passed as launch file arguments) as part of the *Known map* experiment setup. The premade map of the enviorment, defined in *yaml* format, needs to be also passed as an argument;
+- **kown_map.launch**: launches and localisation, navigation and object recognition, either locally or remotely (passed as launch file parameters) as part of the *Known map* experiment setup. The premade map of the enviorment, defined in *yaml* format, needs to be also passed as a parameter;
 - **test_resolution.launch**: launches SLAM, navigation and object recognition as part of the image resolution effect experiment;
 - **test_frame_rate.launch**: launches SLAM, navigation and object recognition as part of the image frame rate effect experiment, where frame rate treatment is passed as parameter;
 - **test_particles.launch**: launches SLAM, navigation and object recognition as part of the number of particles effect experiment, where number of particles treatment is passed as parameter;
