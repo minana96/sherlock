@@ -36,11 +36,25 @@ The direcotry contains parameter configuration for the nodes in *yaml* format th
 
 ### launch
 
-The mission for each of the eight experiments is launched via two launch files, one that will initiate the necessary ROS nodes in *start_run* Robot Runner event, and the other representing core mission tasks that is launched in *launch_mission* event. The two types of launch files are explained below.
+The mission for each of the eight experiments is launched via two launch files, one that initiates the necessary ROS nodes in *start_run* Robot Runner event, and the other representing the mission tasks, which is launched in *launch_mission* event. The two types of launch files are located in *start_up* and *launch_mission* subdirectories, respectfully, and explained below.
 
-#### Start up launch files
+#### start_up
 
 There are three launch files that can be launched in *start_run* Robot Runner event:
-- **start_up.launch**: launches TurtleBo3 specific nodes (from *sherlock_bringup* ROS package), camera driver (from *raspicam_node* ROS package), the static publisher for frame transformations (from *sherlock_bringup* ROS package), profilers (from *ros_melodic_profilers* ROS package) and the node defined in *sherlock_obj_recognition_results.py* in *src* folder of this package. The reason why TurtleBo3 specific nodes and camera drivers are run before the measurements are started is that it takes a while to calibrate the LiDAR sensor and the camera. In Robot Runner, *start_run* event is configured so that it waits until calibration is done so that the calibration delay do not affect the measurements obtained across different experiment runs. The ROS services provided by profilers are also launched in *start_run* event, as they need to be available when the measurements are started. Finally, the ROS node in *sherlock_obj_recognition_results.py* is run in this event, before the object recognition task is launched in *launch_mission* event, as not to miss any of the subscribed results of object recognition.
+- **start_up.launch**: launches TurtleBo3 specific nodes (from *sherlock_bringup* ROS package), camera driver (from *raspicam_node* ROS package), the static publisher for frame transformations (from *sherlock_bringup* ROS package), profilers (from *ros_melodic_profilers* ROS package) and the node defined in *sherlock_obj_recognition_results.py* in *src* folder of this package. The reason why TurtleBo3 specific nodes and camera drivers are run before the measurements are started is that it takes a while to calibrate the LiDAR sensor and the camera. In Robot Runner, *start_run* event is configured so that it waits until calibration is done so that the calibration delay do not affect the measurements obtained across different experiment runs. The ROS services provided by profilers are also launched in *start_run* event, as they need to be available when the measurements are started. Finally, the ROS node in *sherlock_obj_recognition_results.py* is run in this event, before the object recognition task is launched in *launch_mission* event, as not to miss any of the subscribed results of object recognition;
+- **start_up_high_resolution.launch**: the file intiates the exact same ROS nodes as *start_up.launch*, with the only difference of launching the camera driver with different image resolution configured. This file is launched in the respective higher image resolution treatment in image resolution effect experiment;
+- **start_up_high_frame_rate.launch**: the file intiates the exact same ROS nodes as *start_up.launch*, with the only difference of launching the camera driver with different image frame rate configured. This file is launched in therespective higher image frame rate treatment in image frame rate effect experiment. 
 
-#### Mission launch files
+#### launch_mission
+
+There are eight launch files that can be launched in *launch_mission* Robot Runner event for each of the eight respective experiments:
+- **unkown_map.launch**: launches and SLAM, navigation and object recognition, either locally or remotely (passed as launch file parameters) as part of the *Unknown map* experiment setup;
+- **kown_map.launch**: launches and localisation, navigation and object recognition, either locally or remotely (passed as launch file arguments) as part of the *Known map* experiment setup;
+- **test_resolution.launch**: launches SLAM, navigation and object recognition as part of the image resolution effect experiment;
+- **test_frame_rate.launch**: launches SLAM, navigation and object recognition as part of the image frame rate effect experiment, where frame rate treatment is passed as parameter;
+- **test_particles.launch**: launches SLAM, navigation and object recognition as part of the number of particles effect experiment, where number of particles treatment is passed as parameter;
+- **test_temporal_updates.launch**: launches SLAM, navigation and object recognition as part of the temporal updates effect experiment, where temporal updates treatment is passed as parameter;
+- **test_velocity_samples.launch**: launches SLAM, navigation and object recognition as part of the number of velocity samples effect experiment, where number of velocity samples treatment is passed as parameter;
+- **test_sim_period.launch**: launches SLAM, navigation and object recognition as part of the simulation time effect experiment, where simulation time treatment is passed as parameter.
+
+For all mission launch files, the user needs to configure *remote_pc* parameters in *machine* launch tag to fit the descriptions of the target remote PC where SLAM, localisation, navigation and object recognition should be offloaded. The details about *machine* tag are available [here](http://wiki.ros.org/roslaunch/XML/machine).  
