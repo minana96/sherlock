@@ -1,6 +1,6 @@
 # *sherlock* ROS package
 
-This repository represent the *sherlock* ROS pacakge, the highest package in the hierarchy that represents the robotic mission under experimentation. The package is intended for ROS Melodic. The repository needs to be cloned to the catkin workspace on the robot (no need to clone it to the PC) and compiled with following commands:
+This repository represent the *sherlock* ROS pacakge, the highest package in the hierarchy that represents the robotic mission under experimentation. The *sherlock* package is intended for ROS Melodic. The repository needs to be cloned to the catkin workspace on the robot (no need to clone it to the PC) and compiled with following commands:
 ```bash
 cd <catkin_ws_dir>/src
 git clone git@github.com:minana96/sherlock.git
